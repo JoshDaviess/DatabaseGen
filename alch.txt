@@ -1,5 +1,3 @@
-/* Name, price, description, manufacturer, totalprice, alch units
-*/
 "Doom Ale", 1.20, "Fruity Ale", "DoomAles Inc", 1.99, 2.1
 "Doom Green Ale", 1.20, "Strong rich ale", "DoomAles Inc", 2.09, 2.6
 "Doom Red Ale", 1.20, "Fizzy ale", "DoomAles Inc", 1.99, 1.8

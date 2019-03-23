@@ -71,6 +71,21 @@ def main(totalCount):
         count = count + 1
     print("\n", file = SQLFile)
     alchFile = open("alch.txt", "r")
+    alchDrinks = alchFile.read().splitlines()
+    alchFile.close()
+    for i in range(len(alchDrinks)):
+        alchDrink = alchDrinks[i]
+        details = alchDrink.split(", ")
+        name = details[0]
+        price = details[1]
+        desc = details[2]
+        manu = details[3]
+        cost = details[4]
+        alch = details[5]
+        print('INSERT INTO Coursework.Item VALUES (NULL, ' + name + ", " + price + ", " + desc + ", " + manu + ", " + cost + ");", file=SQLFile)
+        print('INSERT INTO Coursework.Drink VALUES (' + str(count) + ', "' + alch + '", "Alch", ' + str(randint(30, 190)) + ");", file=SQLFile)
+        count = count + 1
+    print("\n", file = SQLFile)
 
 def permSalary(low, high):
     salary = randint(low, high)
@@ -78,7 +93,7 @@ def permSalary(low, high):
     salary = round(salary, 1)
     salary = int(salary * 1000)
     return salary
-    
+
 def casualGen(idCount):
     rate = randint(6000, 8000)
     rate = rate / 1000
@@ -89,7 +104,7 @@ def casualGen(idCount):
     dates = startDate()
     starte = "'" + str(dates[2]) + "-" + str(dates[1]) + "-" + str(dates[0])
     return ("INSERT INTO Coursework.Casual VALUES (" + str(idCount) + ", " + str(randint(10,26)) + ", " + str(rate) + ", " + str(holiday) + ", " + starte + "', " + endDate(dates[0], dates[1], dates[2]) + ");")
-    
+
 def PermanentGen(idCount, Employ):
     pension = ["'State Pension', ", "'Private Pension', ", "'Peoples Pension', ", "NULL, ",  "'Private Pension', "]
     if Employ == "Venue":
@@ -101,7 +116,7 @@ def PermanentGen(idCount, Employ):
     dates = startDate()
     starte = "'" + str(dates[2]) + "-" + str(dates[1]) + "-" + str(dates[0])
     return("INSERT INTO Coursework.Permanent VALUES (" + str(idCount) + ", " + str(sal) + ", " + str(randint(7, 26)) + ", " + pension[randint(0, 4)] + starte + "');")
-    
+
 def startDate():
     day = randint(1,28)
     month = randint(1, 12)
@@ -114,10 +129,10 @@ def endDate(day, month, year):
     month = randint(month, 12)
     year = randint(year, 2021)
     if randint(1,10) > 8:
-        return("'" + str(year) + "-" + str(month) + "-" + str(day) + "'") 
+        return("'" + str(year) + "-" + str(month) + "-" + str(day) + "'")
     else:
         return("NULL")
-        
+
 def StaffGen():
     fname =  firstName()
     lname = lastName()
@@ -141,14 +156,14 @@ def pubEmailGen(pubName):
     for i in range(length - 1):
         final = final + pubSplit[i + 1]
     return final + "@crazycatpubs.co.uk"
-    
+
 def capacity():
     capacityU = randint(50,600)
     capacityR = capacityU / 10
     capacityR = round(capacityR, 0)
     capacityR = capacityR * 10
     return int(capacityR)
-    
+
 def pubNameGen():
     pubFile = open("pubnames.txt", "r")
     pubNames = pubFile.read().splitlines()
@@ -162,7 +177,7 @@ def firstName():
     fname = fnames[randint(0, len(fnames) - 1)]
     fNameFile.close()
     return fname
-    
+
 def lastName():
     lNameFile = open("lnames.txt", "r")
     lnames = lNameFile.read().splitlines()
