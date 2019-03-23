@@ -1,0 +1,2 @@
+non alch:
+Name, price, description, manufacturer, totalprice

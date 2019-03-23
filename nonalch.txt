@@ -1,0 +1,17 @@
+"Cola", 0.60, "Cola flavoured fizzy drink", "WowFizzy Inc", 1.39
+"Diet Cola", 0.50, "Diet cola flavoured fizzy drink", "WowFizzy Inc", 1.29
+"Orange Fiztastic", 0.50, "Orange flavoured fizzy drink", "WowFizzy Inc", 1.29
+"Apple Fiztastic", 0.50, "Apple flavoured fizzy drink", "WowFizzy Inc", 1.29
+"Cherry Bonanza", 0.70, "Premium cherry fizzy drink", "Cherrylicious Corp", 1.59
+"Lemonade", 0.50, "Lemon flavoured fizzy drink", "WowFizzy Inc", 1.39
+"Diet Lemonade", 0.40, "Lemon flavoured no sugar drink", "WowFizzy Inc", 1.29
+"Bottled Water", 0.30, "Bottled water from Scandanavia", "Le Water Company", 1.39
+"White Coffee", 1.00, "Coffee with milk", "Beantings Inc", 1.49
+"Black Coffee", 0.90, "Plain coffee", "Beantings Inc", 1.39
+"Latte", 1.10, "Milkier coffee", "Beantings Inc", 1.59
+"Cappucino", 1.20, "Like a latte but with chocolate sprinkles", "Beantings Inc", 1.59
+"Flat White", 1.20, "Stronger latte with less milk", "Beantings Inc", 1.59
+"Espresso", 0.80, "Strong small coffee", "Beantings Inc", 0.99
+"Tea", 0.50, "Black tea", "TeaThots Inc", 0.99
+"Green Tea", 0.60, "Green tea from China", "TeaThots Inc", 0.99
+"Jasmine Tea", 0.60, "Green jasmine tea from China", "TeaThots Inc", 0.99

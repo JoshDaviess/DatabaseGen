@@ -1,0 +1,19 @@
+/* Name, price, description, manufacturer, totalprice, alch units
+*/
+"Doom Ale", 1.20, "Fruity Ale", "DoomAles Inc", 1.99, 2.1
+"Doom Green Ale", 1.20, "Strong rich ale", "DoomAles Inc", 2.09, 2.6
+"Doom Red Ale", 1.20, "Fizzy ale", "DoomAles Inc", 1.99, 1.8
+"Beineken", 1.50, "Crispy lager from the Netherlands", "Beineken Co", 2.59, 2.2
+"Beineken Light", 1.40, "Light version of Beineken", "Beineken Co", 2.59, 1.8
+"Jud Beer", 1.30, "Standard beer", "Jud and Co", 1.99, 1.8
+"Jud Light", 1.30, "Light beer", "Jud and Co", 1.99, 1.6
+"Jud Heavy", 1.40, "Stronger Beer", "Jud and Co", 2.09, 2.2
+"Dronoff Blue", 1.20, "Vodka from France", "Dronoff Inc", 1.89, 1.7
+"Dronoff Black", 1.40, "Strong vodka", "Dronoff Inc", 1.99, 2.0
+"Linkeds Pink", 1.30, "Pink fruity gin", "Dronoff Inc", 1.99, 1.9
+"Linkeds Clear", 1.40, "Strong gin", "Dronoff Inc", 1.99, 2.2
+"Flower Mound Red", 1.60, "Red wine", "Flower Mound", 2.29, 2.4
+"Flower Mound Rose", 1.50, "Rose wine", "Flower Mound", 2.29, 2.4
+"Flower Mound White", 1.60, "White wine", "Flower Mound", 2.29, 2.2
+"James Daniels", 2.00, "Whiskey from America", "James Daniels", 2.59, 2.4
+"James Daniels Gold", 2.10, "Honey whiskey", "James Daniels", 2.59, 2.4
