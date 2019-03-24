@@ -3,17 +3,21 @@ import math
 import os
 import string
 
+def basicGen():
+    with open("genDB.txt") as f:
+        with open("GeneratedSQL.sql", "w") as f1:
+            for line in f:
+                f1.write(line)
+    print("\n", file = open("GeneratedSQL.sql", "a"))
+
 def main(totalCount):
     masterCount = 1
     pubCount = 1
     totalPub = totalCount
     if os.path.exists("GeneratedSQL.sql") == True:
         os.remove("GeneratedSQL.sql")
-    SQLFile = open("GeneratedSQL.sql", "w")
-    print("DELETE FROM Coursework.Permanent;", file=SQLFile)
-    print("DELETE FROM Coursework.Staff;", file=SQLFile)
-    print("ALTER TABLE Coursework.Staff AUTO_INCREMENT = 1;", file = SQLFile)
-    print("ALTER TABLE Coursework.Pub AUTO_INCREMENT = 1;", file = SQLFile)
+    basicGen()
+    SQLFile = open("GeneratedSQL.sql", "a")
     for j in range(totalCount):
         print("Pub Number " + str(pubCount))
         print('SELECT "Importing Pub Number ' + str(pubCount) + '" as "";', file = SQLFile)
@@ -30,22 +34,22 @@ def main(totalCount):
             print(fields, file=SQLFile)
             print(PermanentGen(masterCount, "Bar"), file = SQLFile)
             masterCount = masterCount + 1
-        for i in range(randint(5, 12)):
+        for i in range(randint(6, 13)):
             fields = StaffGen() + '\'Chef\', ' + str(pubCount) + ');'
             print(fields, file=SQLFile)
             print(PermanentGen(masterCount, "Chef"), file = SQLFile)
             masterCount = masterCount + 1
-        for i in range(randint(9, 12)):
+        for i in range(randint(10, 15)):
             fields = StaffGen() + '\'Waiter\', ' + str(pubCount) + ');'
             print(fields, file=SQLFile)
             print(casualGen(masterCount), file=SQLFile)
             masterCount = masterCount + 1
-        for i in range(randint(4, 14)):
+        for i in range(randint(7, 16)):
             fields = StaffGen() + '\'Kitchen Porter\', '  + str(pubCount) + ');'
             print(fields, file=SQLFile)
             print(casualGen(masterCount), file=SQLFile)
             masterCount = masterCount + 1
-        for i in range(randint(4, 14)):
+        for i in range(randint(8, 16)):
             fields = StaffGen() + '\'Cleaner\', ' + str(pubCount) + ');'
             print(fields, file=SQLFile)
             print(casualGen(masterCount), file=SQLFile)
@@ -86,6 +90,44 @@ def main(totalCount):
         print('INSERT INTO Coursework.Drink VALUES (' + str(count) + ', "' + alch + '", "Alch", ' + str(randint(30, 190)) + ");", file=SQLFile)
         count = count + 1
     print("\n", file = SQLFile)
+    SQLFile.close()
+    itemCounts = foodGen(count)
+    SQLFile = open("GeneratedSQL.sql", "a")
+    print('SELECT "Begin import of stock" as "";', file = SQLFile)
+    SQLFile.close()
+    stockGen(itemCounts, totalPub)
+
+
+def stockGen(itemC, pubC):
+    SQLFile = open("GeneratedSQL.sql", "a")
+    for i in range(pubC):
+        for j in range(itemC - 1):
+            print("INSERT INTO Coursework.Stock VALUES (" + str(j + 1) + ", " + str(i + 1) + ", " + str(randint(0, 55)) + ");", file = SQLFile)
+    print('SELECT "Stock import complete" as "";', file = SQLFile)
+    SQLFile.close()
+
+def foodGen(itemcount):
+    SQLFile = open("GeneratedSQL.sql", "a")
+    iCount = itemcount
+    foodFile = open("food.txt", "r")
+    foodData = foodFile.read().splitlines()
+    foodFile.close()
+    for i in range(len(foodData)):
+        foods = foodData[i]
+        foodDetails = foods.split(", ")
+        name = foodDetails[0]
+        price = foodDetails[1]
+        desc = foodDetails[2]
+        manu = foodDetails[3]
+        cost = foodDetails[4]
+        allerg = foodDetails[5]
+        veg = foodDetails[6]
+        print('INSERT INTO Coursework.Item VALUES (NULL, ' + name + ", " + price + ", " + desc + ", " + manu + ", " + cost + ");", file=SQLFile)
+        print('INSERT INTO Coursework.Food VALUES (' + str(iCount) + ', ' + allerg + ', ' + str(randint(200, 600)) + ', ' + veg + ');', file = SQLFile)
+        iCount = iCount + 1
+    print("\n", file = SQLFile)
+    print('SELECT "Food and Drink import complete" as "";', file = SQLFile)
+    return iCount
 
 def permSalary(low, high):
     salary = randint(low, high)

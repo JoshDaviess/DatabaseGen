@@ -1,0 +1,106 @@
+DROP DATABASE IF EXISTS Coursework;
+CREATE DATABASE Coursework;
+USE Coursework;
+
+CREATE TABLE Staff (
+	staff_ID INT NOT NULL AUTO_INCREMENT,
+	staff_fName VARCHAR(20) NOT NULL,
+	staff_lName VARCHAR(20) NOT NULL,
+	staff_address VARCHAR(100) NOT NULL,
+	staff_postcode VARCHAR(8) NOT NULL,
+	staff_email VARCHAR(200),
+	staff_telephone VARCHAR(13) NOT NULL,
+	staff_emergencyTelephone VARCHAR(13),
+	staff_jobTitle VARCHAR(16) NOT NULL,
+	staff_pub INT,
+	PRIMARY KEY (staff_ID)
+);
+
+CREATE TABLE Permanent (
+	staff_ID INT NOT NULL,
+	staff_salary INT NOT NULL,
+	staff_holiday INT NOT NULL,
+	staff_pensionType VARCHAR(100) NOT NULL,
+	staff_startDate DATE NOT NULL,
+	FOREIGN KEY (staff_ID) REFERENCES Staff(staff_ID)
+);
+
+CREATE TABLE Casual (
+	staff_ID INT,
+	staff_weeklyHours TINYINT NOT NULL,
+	staff_hourlyRate DECIMAL(4, 2) NOT NULL,
+	staff_holidayAccrued DECIMAL(4, 2) NOT NULL,
+	staff_startDate DATE NOT NULL,
+	staff_endDate DATE,
+	FOREIGN KEY (staff_ID) REFERENCES Staff(staff_ID),
+	CHECK (casual_weeklyHours>=10)
+);
+
+CREATE TABLE Pub (
+	pub_ID INT NOT NULL AUTO_INCREMENT,
+	pub_name VARCHAR(50),
+	pub_address VARCHAR(100) NOT NULL,
+	pub_postcode VARCHAR(8),
+	pub_telephone VARCHAR(13),
+	pub_email VARCHAR(200),
+	pub_manager INT,
+	pub_capacity SMALLINT,
+	PRIMARY KEY (pub_ID),
+	FOREIGN KEY (pub_manager) REFERENCES Staff(staff_ID)
+);
+
+ALTER TABLE Permanent MODIFY
+staff_pensionType VARCHAR(100);
+
+CREATE TABLE Shift (
+	staff_ID INT NOT NULL,
+	pub_ID INT NOT NULL,
+	shift_start DATETIME,
+	shift_end DATETIME,
+	FOREIGN KEY (staff_ID) REFERENCES Staff(staff_ID),
+	FOREIGN KEY (pub_ID) REFERENCES Pub(pub_ID)
+);
+
+CREATE TABLE Item (
+	item_ID INT NOT NULL AUTO_INCREMENT,
+	item_name varchar(30) NOT NULL,
+	item_cost DECIMAL(4, 2),
+	item_description VARCHAR(200),
+	item_manufacturer VARCHAR(100),
+	item_price DECIMAL(2, 2),
+	PRIMARY KEY (item_ID)
+);
+
+CREATE TABLE Food (
+	item_ID INT NOT NULL,
+	food_allergens VARCHAR(100),
+	food_calories SMALLINT,
+	food_vegetarian BOOLEAN,
+	FOREIGN KEY (item_ID) REFERENCES Item(item_ID)
+);
+
+CREATE TABLE Drink (
+	item_ID INT NOT NULL,
+	drink_alchoholUnits DECIMAL(3, 1),
+	drink_type VARCHAR(10),
+	drink_calories SMALLINT,
+	FOREIGN KEY (item_ID) REFERENCES Item(item_ID)
+);
+
+CREATE TABLE Stock (
+	item_ID INT NOT NULL,
+	pub_ID INT NOT NULL,
+	stock_amount SMALLINT,
+	FOREIGN KEY (item_ID) REFERENCES Item(item_ID),
+	FOREIGN KEY (pub_ID) REFERENCES Pub(pub_ID)
+);
+
+CREATE TABLE Orders (
+	order_ID INT NOT NULL,
+	pub_ID INT NOT NULL,
+	order_totalPrice DECIMAL(5, 2),
+	order_payment CHAR(4),
+	order_VAT DECIMAL(5, 2),
+	order_dateTime TIMESTAMP,
+	FOREIGN KEY (pub_ID) REFERENCES Pub(pub_ID)
+);

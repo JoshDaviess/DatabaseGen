@@ -1,19 +1,19 @@
-/* Name, price, description, manufacturer, totalprice, allergens, vegetarian
-*/
-"Small Breakfast", 2.50, "1 Sausage, 1 Bacon, 1 Egg, Beans and Hash Browns", "Crazy Cat Pubs", 3.10, "Gluten Soy", false
-"Breakfast", 3.00, "2 Sausages, 2 Bacon, 2 Eggs, Beans, Mushrooms and Hash Browns", "Crazy Cat Pubs", 4.50, "Gluten Soy", false
-"Large Breakfast", 3.50, "3 Sausages, 3 Bacon, 3 Eggs, Beans, Mushrooms, Tomatoes and Hash Browns", "Crazy Cat Pubs", 5.00, "Gluten Soy", false
-"Vegetarian Breakfast", 3.20, "3 Veggie Sausages, 2 Eggs, Beans, Mushrooms and Hash Browns", "Crazy Cat Pubs", 4.50, NULL, true
-"BLT Sandwich", 2.10, "Bacon, Lettuce and Tomato on White Bread", "Crazy Cat Pubs", 2.99, "Wheat", false
+"Small Breakfast", 2.50, "1 Sausage 1 Bacon 1 Egg Beans and Hash Browns", "Crazy Cat Pubs", 3.10, "Gluten Soy", false
+"Breakfast", 3.00, "2 Sausages 2 Bacon 2 Eggs Beans Mushrooms and Hash Browns", "Crazy Cat Pubs", 4.50, "Gluten Soy", false
+"Large Breakfast", 3.50, "3 Sausages 3 Bacon 3 Eggs Beans Mushrooms Tomatoes and Hash Browns", "Crazy Cat Pubs", 5.00, "Gluten Soy", false
+"Vegetarian Breakfast", 3.20, "3 Veggie Sausages 2 Eggs Beans Mushrooms and Hash Browns", "Crazy Cat Pubs", 4.50, NULL, true
+"BLT Sandwich", 2.10, "Bacon Lettuce and Tomato on White Bread", "Crazy Cat Pubs", 2.99, "Wheat", false
 "Avocado Sandwich", 2.00, "Avocado and Lettuce on White Bread", "Crazy Cat Pubs", 2.89, "Wheat", true
 "Chicken Sandwich", 1.90, "Chicken and Mayo on White Bread", "Crazy Cat Pubs", 2.89, "Wheat", false
-"Chicken Burger", 2.20, "Chicken, Lettuce, Tomato and Onion in a Bun", "Crazy Cat Pubs", 3.19, "Wheat", false
-"Beef Burger", 2.20, "Beef, Lettuce, Tomato and Onion in a Bun", "Crazy Cat Pubs", 3.19, "Wheat", false
-"Veggie Burger", 2.20, "Veggie Bean Patty, Lettuce and Onion in a Bun", "Crazy Cat Pubs, 3.19", "Wheat", true
+"Chicken Burger", 2.20, "Chicken Lettuce Tomato and Onion in a Bun", "Crazy Cat Pubs", 3.19, "Wheat", false
+"Beef Burger", 2.20, "Beef Lettuce Tomato and Onion in a Bun", "Crazy Cat Pubs", 3.19, "Wheat", false
+"Veggie Burger", 2.20, "Veggie Bean Patty Lettuce and Onion in a Bun", "Crazy Cat Pubs", 3.19, "Wheat", true
 "Rump Steak", 2.80, "8oz Rump Steak and Chips", "Crazy Cat Pubs", 3.49, NULL, false
 "Sirloin Steak", 3.00, "8oz Sirloin Steak and Chips", "Crazy Cat Pubs", 3.89, NULL, false
 "Rack of Ribs", 3.30, "Full Rack of Ribs and Chips", "Crazy Cat Pubs", 4.09, NULL, false
+"Mega Stack", 3.50, "Super Double Burger", "Crazy Cat Pubs", 5.09, "Wheat", false
 "Ready Salted Crisps", 0.40, "Ready Salted Crisps", "Runners Inc", 0.59, NULL, true
 "Salt and Vinegar Crisps", 0.40, "Salt and Vinegar Crisps", "Runners Inc", 0.59, NULL, true
 "Cheese and Onion Crisps", 0.50, "Cheese and Onion Crisps", "Runners Inc", 0.59, NULL, true
 "Pork Scratchings", 0.30, "Pork Scratchings", "Runners Inc", 0.59, NULL, true
+"Chicken Scratchings", 0.30, "Chicken Scratchings", "Runners Inc", 0.59, NULL, true
