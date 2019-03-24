@@ -106,6 +106,15 @@ def stockGen(itemC, pubC):
     print('SELECT "Stock import complete" as "";', file = SQLFile)
     SQLFile.close()
 
+def orderGen(pubC, itemC):
+    orderCount = 1
+
+
+def findPrice(isDrink, itemCount):
+    if isDrink = true:
+        drinkFile = open
+
+
 def foodGen(itemcount):
     SQLFile = open("GeneratedSQL.sql", "a")
     iCount = itemcount
