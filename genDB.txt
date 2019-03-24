@@ -102,5 +102,15 @@ CREATE TABLE Orders (
 	order_payment CHAR(4),
 	order_VAT DECIMAL(5, 2),
 	order_dateTime TIMESTAMP,
+	PRIMARY KEY (order_ID),
 	FOREIGN KEY (pub_ID) REFERENCES Pub(pub_ID)
+);
+
+CREATE TABLE OrderItem (
+	order_ID INT NOT NULL,
+	item_ID INT NOT NULL,
+	order_quantity INT NOT NULL,
+	FOREIGN KEY (order_ID) REFERENCES Orders(order_ID),
+	FOREIGN KEY (item_ID) REFERENCES Item(item_ID),
+	CHECK (order_quantity>0)
 );
