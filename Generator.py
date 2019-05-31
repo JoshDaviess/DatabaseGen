@@ -91,11 +91,16 @@ def main(totalCount):
         count = count + 1
     print("\n", file = SQLFile)
     SQLFile.close()
+    print("Total Items")
     itemCounts = foodGen(count)
     SQLFile = open("GeneratedSQL.sql", "a")
     print('SELECT "Begin import of stock" as "";', file = SQLFile)
     SQLFile.close()
     stockGen(itemCounts, totalPub)
+    SQLFile = open("GeneratedSQL.sql", "a")
+    print('SELECT "Begin import of orders, may take a while!" as "";', file = SQLFile)
+    SQLFile.close()
+    orderGen(totalPub)
 
 
 def stockGen(itemC, pubC):
@@ -106,14 +111,43 @@ def stockGen(itemC, pubC):
     print('SELECT "Stock import complete" as "";', file = SQLFile)
     SQLFile.close()
 
-def orderGen(pubC, itemC):
+def orderGen(pubC):
+    SQLFile = open("GeneratedSQL.sql", "a")
+    payment = ['"Cash"', '"Card"']
     orderCount = 1
+    quantity = 1
+    for j in range(randint(92000, 100000)):
+        price = priceGen()
+        PubNumber = str(randint(1, pubC))
+        print('INSERT INTO Coursework.Orders VALUES (NULL, ' + PubNumber + ', ' + str(price) + ', ' + payment[randint(0, 1)] + ', ' + str(round((float(price) * 0.2), 2 )) + ', "' + dateGen() + '");', file = SQLFile)
+        for i in range(randint(0, 7)):
+            itemID = randint(1, 53)
+            if itemID <= 34:
+                quantity = str(randint(1, 4))
+            if itemID > 34:
+                quantity = str(randint(1, 2))
+            print('INSERT INTO Coursework.OrderItem VALUES (' + str(orderCount) + ', ' + str(itemID) + ', ' + quantity + ');', file = SQLFile)
+        orderCount = orderCount + 1
+        if (orderCount % 2000) == 0:
+            print('SELECT "Imported ' + str(orderCount) + 'orders so far!" as "";', file = SQLFile)
+    print('SELECT "Total orders imported is ' + str(orderCount) + '!" as "";', file = SQLFile)
+    SQLFile.close()
 
+def priceGen():
+    decimalPrice = [99, 69, 00, 00, 99]
+    price = str(randint(1, 20)) + '.' + str(decimalPrice[randint(0, 4)])
+    return price
 
-def findPrice(isDrink, itemCount):
-    if isDrink = true:
-        drinkFile = open
-
+def dateGen():
+    day = str(randint(1,28))
+    month = str(randint(3, 5))
+    year = str(2019)
+    hour = str(randint(10, 23))
+    minute = str(randint(0, 60))
+    second = str(randint(0, 60))
+    date = str(year + "-" + month + "-" + day)
+    time = str(hour + ":" + minute + ":" + second)
+    return str(date + " " + time)
 
 def foodGen(itemcount):
     SQLFile = open("GeneratedSQL.sql", "a")

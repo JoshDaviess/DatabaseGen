@@ -96,7 +96,7 @@ CREATE TABLE Stock (
 );
 
 CREATE TABLE Orders (
-	order_ID INT NOT NULL,
+	order_ID INT NOT NULL AUTO_INCREMENT,
 	pub_ID INT NOT NULL,
 	order_totalPrice DECIMAL(5, 2),
 	order_payment CHAR(4),
