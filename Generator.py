@@ -28,34 +28,58 @@ def main(totalCount):
         print(PermanentGen(masterCount, "Venue"), file = SQLFile)
         print(pubGen(pubCount, masterCount), file = SQLFile)
         print("UPDATE Coursework.Staff SET staff_pub = " + str(pubCount) + " WHERE staff_ID = " + str(masterCount) + ";", file=SQLFile)
+        SQLFile.close()
+        shiftGen(pubCount, masterCount)
+        SQLFile = open("GeneratedSQL.sql", "a")
         masterCount = masterCount + 1
         for i in range(randint(3, 7)):
             fields = StaffGen() + '\'Bar Manager\', ' + str(pubCount) + ');'
             print(fields, file=SQLFile)
             print(PermanentGen(masterCount, "Bar"), file = SQLFile)
+            SQLFile.close()
+            shiftGen(pubCount, masterCount)
+            SQLFile = open("GeneratedSQL.sql", "a")
             masterCount = masterCount + 1
-        for i in range(randint(6, 13)):
+
+        for i in range(randint(7, 14)):
             fields = StaffGen() + '\'Chef\', ' + str(pubCount) + ');'
             print(fields, file=SQLFile)
             print(PermanentGen(masterCount, "Chef"), file = SQLFile)
+            SQLFile.close()
+            shiftGen(pubCount, masterCount)
+            SQLFile = open("GeneratedSQL.sql", "a")
             masterCount = masterCount + 1
-        for i in range(randint(10, 15)):
+
+        for i in range(randint(11, 16)):
             fields = StaffGen() + '\'Waiter\', ' + str(pubCount) + ');'
             print(fields, file=SQLFile)
             print(casualGen(masterCount), file=SQLFile)
+            SQLFile.close()
+            shiftGen(pubCount, masterCount)
+            SQLFile = open("GeneratedSQL.sql", "a")
             masterCount = masterCount + 1
-        for i in range(randint(7, 16)):
+
+        for i in range(randint(9, 16)):
             fields = StaffGen() + '\'Kitchen Porter\', '  + str(pubCount) + ');'
             print(fields, file=SQLFile)
             print(casualGen(masterCount), file=SQLFile)
+            SQLFile.close()
+            shiftGen(pubCount, masterCount)
+            SQLFile = open("GeneratedSQL.sql", "a")
             masterCount = masterCount + 1
-        for i in range(randint(8, 16)):
+
+        for i in range(randint(9, 16)):
             fields = StaffGen() + '\'Cleaner\', ' + str(pubCount) + ');'
             print(fields, file=SQLFile)
             print(casualGen(masterCount), file=SQLFile)
+            SQLFile.close()
+            shiftGen(pubCount, masterCount)
+            SQLFile = open("GeneratedSQL.sql", "a")
             masterCount = masterCount + 1
+
         pubCount = pubCount + 1
         print("\n", file = SQLFile)
+
     print('SELECT "Pubs and Staff Import Complete" as "";', file = SQLFile)
     print('SELECT "Begin import of food and drink" as "";', file = SQLFile)
     count = 1
@@ -102,6 +126,24 @@ def main(totalCount):
     SQLFile.close()
     orderGen(totalPub)
 
+def shiftGen(pubC, staffC):
+    SQLFile = open("GeneratedSQL.sql", "a")
+    day = 24
+    month = 5
+    year = "2019"
+    minute = "00"
+    second = "00"
+    while day != 11:
+        luck = randint(1,7)
+        if luck > 2:
+            hour = randint(6,15)
+            start = str(year + "-" + str(month) + "-" + str(day) + " " + str(hour) + ":" + str(minute) + ":" + str(second))
+            finish = str(year + "-" + str(month) + "-" + str(day) + " " + str(hour + randint(6, 8)) + ":" + str(minute) + ":" + str(second))
+            print('INSERT INTO Coursework.Shift VALUES (' + str(staffC) + ', ' + str(pubC) + ', "' + start + '", "' + finish + '");', file = SQLFile)
+        day = day + 1
+        if day == 31:
+            day = 1
+    SQLFile.close()
 
 def stockGen(itemC, pubC):
     SQLFile = open("GeneratedSQL.sql", "a")
@@ -116,7 +158,7 @@ def orderGen(pubC):
     payment = ['"Cash"', '"Card"']
     orderCount = 1
     quantity = 1
-    for j in range(randint(92000, 100000)):
+    for j in range(randint(96000, 110000)):
         price = priceGen()
         PubNumber = str(randint(1, pubC))
         print('INSERT INTO Coursework.Orders VALUES (NULL, ' + PubNumber + ', ' + str(price) + ', ' + payment[randint(0, 1)] + ', ' + str(round((float(price) * 0.2), 2 )) + ', "' + dateGen() + '");', file = SQLFile)
@@ -139,12 +181,15 @@ def priceGen():
     return price
 
 def dateGen():
-    day = str(randint(1,28))
-    month = str(randint(3, 5))
+    day = str(randint(1,31))
+    month = str(randint(5, 6))
     year = str(2019)
     hour = str(randint(10, 23))
     minute = str(randint(0, 60))
     second = str(randint(0, 60))
+    if int(month) == 6:
+        if int(day) > 6:
+            month = "5"
     date = str(year + "-" + month + "-" + day)
     time = str(hour + ":" + minute + ":" + second)
     return str(date + " " + time)
