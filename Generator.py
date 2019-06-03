@@ -133,7 +133,7 @@ def shiftGen(pubC, staffC):
     year = "2019"
     minute = "00"
     second = "00"
-    while day != 11:
+    while day != 14:
         luck = randint(1,7)
         if luck > 2:
             hour = randint(6,15)
@@ -143,6 +143,7 @@ def shiftGen(pubC, staffC):
         day = day + 1
         if day == 31:
             day = 1
+            month = 6
     SQLFile.close()
 
 def stockGen(itemC, pubC):
@@ -190,6 +191,12 @@ def dateGen():
     if int(month) == 6:
         if int(day) > 6:
             month = "5"
+    if int(month) == 5:
+        if int(day) <= 6:
+            month = "6"
+    if int(day) >= 7 and int(day) <= 16:
+        day = str(randint(1, 6))
+        month = "6"
     date = str(year + "-" + month + "-" + day)
     time = str(hour + ":" + minute + ":" + second)
     return str(date + " " + time)
